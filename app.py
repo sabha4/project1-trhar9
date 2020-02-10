@@ -7,17 +7,17 @@ json = response.json()
 
 title = str(json['recipes'][0]['title'])
 url = str(json['recipes'][0]['sourceUrl'])
-instructions = json['recipes'][0]['analyzedInstructions'][0]['steps']
-steps = []
-
-for i in range(len(instructions)):
-    steps.append(instructions[i]['step'])
+instructions = json['recipes'][0]['instructions']
 
 app = flask.Flask(__name__)
 @app.route('/') 
 
 def index(): 
-    return title
+    return flask.render_template(
+        "index.html", 
+        title = title, 
+        url = url,
+        steps = instructions)
 
 app.run(
     port=int(os.getenv('PORT', 8080)),
