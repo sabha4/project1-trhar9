@@ -1,4 +1,4 @@
-import random, json, flask, os
+import json, flask, os
 import requests_oauthlib, requests
 
 url = "https://api.spoonacular.com/recipes/random?apiKey=1b2c6332c94c4f27ae541fbef839174f"
