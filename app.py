@@ -1,5 +1,6 @@
 import json, flask, os
 import requests_oauthlib, requests
+import random
 
 foodurl = "https://api.spoonacular.com/recipes/random?cuisine=african?number=15&apiKey=b37e2c0b29534d18913727984e0481c9"
 response = requests.get(foodurl)
@@ -9,8 +10,14 @@ title = str(json['recipes'][0]['title'])
 cooktime = str(json['recipes'][0]['readyInMinutes'])
 url = str(json['recipes'][0]['sourceUrl'])
 instructions = json['recipes'][0]['instructions']
-ingredients = json['recipes'][0]["extendedIngredients"]
+ingredients_arrary = json['recipes'][0]["extendedIngredients"]
+ingredients = []
+x = random.randint(0,4)
+y = random.randint(4,9)
+z = random.randint(9,14)
 
+for i in range(len(ingredients_arrary)):
+    ingredients.append(ingredients_arrary[i]["original"])
 
 twitterurl = "https://api.twitter.com/1.1/search/tweets.json?q=african%20africanfood&lang=en&result_type=mixed"
 
@@ -23,7 +30,9 @@ oauth = requests_oauthlib.OAuth1(
 
 response = requests.get(twitterurl, auth=oauth)
 jsonbody = response.json()
-tweets = str(jsonbody["statuses"][0]["text"])
+tweet1 = str(jsonbody["statuses"][x]["text"])
+tweet2 = str(jsonbody["statuses"][y]["text"])
+tweet3 = str(jsonbody["statuses"][z]["text"])
 
 app = flask.Flask(__name__)
 @app.route('/') 
@@ -35,7 +44,9 @@ def index():
         url = url,
         instructions = instructions,
         ingredients = ingredients,
-        tweets = tweets,
+        tweet1 = tweet1,
+        tweet2 = tweet2,
+        tweet3 = tweet3,
         cooktime = cooktime
         )
 

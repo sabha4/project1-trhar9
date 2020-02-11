@@ -3,10 +3,24 @@
   </head>
   <body>
    <h1>{{title}}</h1>
+   <hr>
+   
+   <h3>INSTRUCTIONS</h3>
+   <p>This recipe takes {{cooktime}} mintues to serve</p>
    <p>{{instructions}}</p>
-   <p>{{tweets}}</p>
-   <p>{{cooktime}}</p>
-   <p>{{ingredients}}</p>
+ 
+   <h3>INGREDIENTS</h3>
+   <ul>
+         <li id="food">{{ingredients}}</li>
+    </ul> 
+    
+    <h3>QUOTES</h3>
+    <ul>
+        <li>{{tweet1}}</li>
+        <li>{{tweet2}}</li>
+        <li>{{tweet3}}</li>
+    </ul>
+   
    <a href={{url}}>CLICK HERE FOR MORE INFO!!</a>
   </body>
 </html>
